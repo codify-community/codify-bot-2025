@@ -30,7 +30,7 @@ Você é nosso membro número {len(member.guild.members)}""",
             inline=False,
         )
         embed.add_field(
-            name="☁ Hospede seu bot ou site de totalmente de `graça`:",
+            name="☁ Hospede seu bot ou site totalmente de `graça` na Shard Cloud:",
             value="""discord.gg/shardcloud
     https://www.youtube.com/watch?v=I2Ol9T0U8JU""",
             inline=False,
