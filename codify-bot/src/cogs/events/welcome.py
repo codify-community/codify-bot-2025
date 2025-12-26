@@ -29,12 +29,6 @@ Você é nosso membro número {len(member.guild.members)}""",
             value="Você ainda não pode ver o resto do servidor, pois precisa configurar seu perfil em Canais & Cargos localizado no canto superior esquerdo.",
             inline=False,
         )
-        embed.add_field(
-            name="☁ Hospede seu bot ou site totalmente de `graça` na Shard Cloud:",
-            value="""discord.gg/shardcloud
-    https://www.youtube.com/watch?v=I2Ol9T0U8JU""",
-            inline=False,
-        )
         embed.set_author(
             name=member.guild.name,
             icon_url=member.guild.icon.url,
