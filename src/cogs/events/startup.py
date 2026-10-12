@@ -9,12 +9,12 @@ class StartupEventCog(commands.Cog):
         self.client = client
         self.activities = [
             Game(name="Codify Community"),
-            Game(name="ilha das pythons 🐍"),
+            Game(name="Ilha das pythons 🐍"),
             Activity(
                 type=ActivityType.listening,
-                name="lofi enquanto corrijo bugs 🐜",
+                name="Lofi enquanto corrijo bugs 🐜",
             ),
-            Activity(type=ActivityType.watching, name="commits da Codify 🚀"),
+            Activity(type=ActivityType.watching, name="Commits da Codify 🚀"),
         ]
         self.current_activity_index: int = 0
 

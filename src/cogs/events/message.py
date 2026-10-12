@@ -20,7 +20,7 @@ class MessageEventCog(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message: Message):
-        if message.channel.id == ANTIBOT_CHANNEL_ID:
+        if message.channel.id == ANTIBOT_CHANNEL_ID and not message.author.bot:
             embed = Embed(
                 title="⚠️ Banimento Automático",
                 description=f"Olá **{message.author.display_name}**, sua conta foi detectada efetuando **spam** e ativou o sistema de proteção automatizada do servidor.",
