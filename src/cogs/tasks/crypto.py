@@ -1,0 +1,48 @@
+import httpx
+from discord import Client
+from discord.ext import commands, tasks
+
+from repositories.cryptos_repository import CryptosRepository
+
+cryptos = {
+    "BTC": "BTCBRL",
+    "ETH": "ETHBRL",
+    "BNB": "BNBBRL",
+    "LTC": "LTCBRL",
+    "AXS": "AXSBRL",
+    "SOL": "SOLBRL",
+    "DOT": "DOTBRL",
+    "LINK": "LINKBRL",
+    "CAKE": "CAKEBRL",
+}
+
+
+class CriptoTasksCog(commands.Cog):
+    def __init__(self, client: Client) -> None:
+        self.client = client
+        self.crypto_repository = CryptosRepository()
+
+        @tasks.loop(minutes=5)
+        async def get_cripto_prices(self):
+            symbols = [f"%22{cripto}%22" for cripto in cryptos.values()]
+            url = f"https://www.binance.me/api/v3/ticker/price?symbols=[{','.join(symbols)}]"
+
+            async with httpx.AsyncClient() as http_client:
+                response = await http_client.get(url)
+
+            data = response.json()
+            await self.crypto_repository.update_prices(data)
+
+    async def cog_load(self) -> None:
+        pass
+        # self.get_cripto_prices.start()
+        # print("✅ Task `get_cripto_prices` iniciada com sucesso!")
+
+    async def cog_unload(self) -> None:
+        pass
+        # self.get_cripto_prices.cancel()
+        # print("✅ Task `get_cripto_prices` foi terminada com sucesso!")
+
+
+async def setup(client):
+    await client.add_cog(CriptoTasksCog(client))
